@@ -1,8 +1,5 @@
 // llamar librerias
 
-// otra forma
-// import express form 'express';
-
 const express = require('express');
 const bodyParser = require('body-parser'); // trabajar con body
 const router = express.Router(); // permite separar por cabeceras y rutas
@@ -42,11 +39,10 @@ router.delete( '/delete' , (req , ress)=> {
     } );
 } );
 
-// app.use('/' , ( req, ress ) => {
-//     ress.send('hola');
-// });
 
-// escuchar
+
+app.use('/app' , express.static('public'));
+
 
 app.listen(3000);
 console.log('La aplicacion esta escuchando a http://localhost:3000');
