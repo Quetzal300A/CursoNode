@@ -4,7 +4,15 @@ exports.success = ( req , ress , message, status ) => {
 }
 
 exports.error = ( req , ress, message , status, details ) => {
-    console.error( details);
+console.error( "[response erros ]"  + details);
+console.table( [{
+            id: 1,
+            name: 'alfonso',
+        },{
+            id: 2,
+            name: 'altamirano',
+        }
+    ] );
     ress.status(status || 500 ).send(
         {
             error: message,
