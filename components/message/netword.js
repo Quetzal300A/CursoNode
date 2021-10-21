@@ -1,7 +1,7 @@
 const express = require('express');
 
 const response = require('../../network/response');
-
+const controller = require('./controller');
 const router = express.Router();
 
 
@@ -10,12 +10,15 @@ router.get('/getResponse' , (req , ress) => {
     response.success( req, ress, 'Mensaje enviado desde Response' );
 });
 
-router.post('/getFuntion' , (req , ress) => {
-    console.log(`imprime body`);
-    console.log(req.body);
-    console.log(req.query);
-    console.log(' esto es en el consola del servidor, no del frond.');
-    ress.send('hola este es un post');
+router.post('/' , (req , ress) => {
+    
+    controller.addMessage( req.body.user , req.body.message).then( (fullMessage) => {
+        response.success(req, ress, { mensajeError: 'Enviado corectamente' , fullMessage }, 201);
+    })
+    .catch( ()=> {
+        response.error(req , ress, 'Error inesperado', 500, 'Es una simulacion' );
+    });
+
 });
 
 module.exports = router;  // pedir a jon explicacnion de esto

@@ -1,5 +1,5 @@
 exports.success = ( req , ress , message, status ) => {
-    ress.status(status || 200).send(message);
+    ress.status(status || 200).send({message });
     // ress.send(message);
 }
 
