@@ -5,9 +5,15 @@ const controller = require('./controller');
 const router = express.Router();
 
 
-router.get('/getResponse' , (req , ress) => {
-    console.log('Enviando respuesta desde response');
-    response.success( req, ress, 'Mensaje enviado desde Response' );
+router.get('/' , (req , ress) => {
+   controller.getMessages()
+   .then ( (messageList) => {
+       console.log(messageList);
+       response.success(req , ress , messageList , 200)
+   })
+   .catch( e => {
+       response.error(req, ress, 'Error inesperado', 500, e)
+   } );
 });
 
 router.post('/' , (req , ress) => {
